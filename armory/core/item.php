@@ -58,29 +58,29 @@
 			{
 				$array = array();
 				$array['name'] = $name;
-				if($ItemLevel !== 0)
+				if($ItemLevel != 0)
 				{
 					$array['item_level'] = $ItemLevel;
 				}
-				if($stat_type1 !== 0)
+				if($stat_type1 != 0)
 				{
 					$array['stat_1'] = self::MakeStat($stat_type1, $stat_value1);
 					
 				}
-				if($stat_type2 !== 0)
+				if($stat_type2 != 0)
 				{
 					$array['stat_2'] = self::MakeStat($stat_type2, $stat_value2);
 					
 				}
-				if($stat_type3 !== 0)
+				if($stat_type3 != 0)
 				{
 					$array['stat_3'] = self::MakeStat($stat_type3, $stat_value3);
 				}
-				if($stat_type4 !== 0)
+				if($stat_type4 != 0)
 				{
 					$array['stat_4'] = self::MakeStat($stat_type4, $stat_value4);
 				}
-				if($stat_type5 !== 0)
+				if($stat_type5 != 0)
 				{
 					$array['stat_5'] = self::MakeStat($stat_type5, $stat_value5);
 				}
@@ -112,33 +112,33 @@
 			$nclr = '<span style="color:'.$cklr[$Quality].'">';
 			echo "$nclr $name </span>";
 			echo $b;
-			if($ItemLevel !== 0)
+			if($ItemLevel != 0)
 			{
 				$color = '<span style="color:yellow">';
 				echo "$color Item Level $ItemLevel</span>";
 				echo $b;
 			}
-			if($stat_type1 !== 0)
+			if($stat_type1 != 0)
 			{
 				echo self::MakeStat($stat_type1, $stat_value1);
 				echo '<br>';
 			}
-			if($stat_type2 !== 0)
+			if($stat_type2 != 0)
 			{
 				echo self::MakeStat($stat_type2, $stat_value2);
 				echo '<br>';
 			}
-			if($stat_type3 !== 0)
+			if($stat_type3 != 0)
 			{
 				echo self::MakeStat($stat_type3, $stat_value3);
 				echo '<br>';
 			}
-			if($stat_type4 !== 0)
+			if($stat_type4 != 0)
 			{
 				echo self::MakeStat($stat_type4, $stat_value4);
 				echo '<br>';
 			}
-			if($stat_type5 !== 0)
+			if($stat_type5 != 0)
 			{
 				echo self::MakeStat($stat_type5, $stat_value5);
 				echo '<br>';
@@ -158,54 +158,51 @@
 			if($SellPrice > 0)
 			{
 				$prices = self::calculateItemPrice($SellPrice);
-				$gold = $prices["gold"];
-				$silver = $prices["silver"];
-				$copper = $prices["copper"];
+				$gold = $prices["gold"] . '<img src="./img/money-gold.gif" />';
+				$silver = $prices["silver"] . '<img src="./img/money-silver.gif" />';
+				$copper = $prices["copper"] . '<img src="./img/money-copper.gif" />';
 				$color = '<span style="color:white">';
-				$goldimg = '<img src="http://wowimg.zamimg.com/images/icons/money-gold.gif" />';
-				$silverimg = '<img src="http://wowimg.zamimg.com/images/icons/money-silver.gif" />';
-				$copperimg = '<img src="http://wowimg.zamimg.com/images/icons/money-copper.gif" />';
-				if($gold !== 0)
+				if($gold != 0)
 				{
-					if($silver !== 0)
+					if($silver != 0)
 					{
-						if($copper !== 0)
+						if($copper != 0)
 						{
-							echo "$color Sell Price: $gold $goldimg $silver $silverimg $copper $copperimg </span>";		
+							echo "$color Sell Price: $gold $silver $copper </span>";		
 						}
 						else
 						{
-							echo "$color Sell Price: $gold $goldimg $silver $silverimg </span>";	
+							echo "$color Sell Price: $gold $silver </span>";	
 						}
 					}
 					else
 					{
-						if($copper === 0)
+						if($copper == 0)
 						{
-							echo "$color Sell Price: $gold $goldimg </span>";	
+							echo "$color Sell Price: $gold </span>";	
 						}
 						else
 						{
-							echo "$color Sell Price: $gold $goldimg $copper $copperimg </span>";
+							echo "$color Sell Price: $gold $copper </span>";
 						}
 					}
 				}
 				else
 				{
-					if($silver !== 0)
+					if($silver != 0)
 					{
-						if($copper !== 0)
+						if($copper != 0)
 						{
-							echo "$color Sell Price: $silver $silverimg $copper $copperimg </span>";	
+							echo "$color Sell Price: $silver $copper </span>";	
 						}
 						else
 						{
-							echo "$color Sell Price: $silver $silverimg </span>";
+							echo "$color Sell Price: $silver </span>";
 						}
 					}
 					else
 					{
-						echo "$color Sell Price: $copper $copperimg </span>";
+						echo "$color Sell Price: $copper </span>";
 					}	
 				}
 				echo $b;
