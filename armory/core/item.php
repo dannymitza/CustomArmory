@@ -161,7 +161,7 @@
 			}
 			if($stackable > 0)
 			{
-				echo "<span style=\"color:white\">Max Stack: " . $stackable" . </span><br>";
+				echo "<span style=\"color:white\">Max Stack: " . $stackable . "</span><br>";
 			}
 			if($SellPrice > 0)
 			{
