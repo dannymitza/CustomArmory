@@ -110,14 +110,26 @@
 			
 			$cklr = array(0 => "grey", 1 => "white", 2 => "green", 3 => "blue", 4 => "purple", 5 => "orange", 6 => "red", 7 => "gold");
 			$nclr = '<span style="color:'.$cklr[$Quality].'">';
-			echo "$nclr $name </span>";
-			echo $b;
+			echo "$nclr $name </span><br>";
 			if($ItemLevel != 0)
 			{
-				$color = '<span style="color:yellow">';
-				echo "$color Item Level $ItemLevel</span>";
-				echo $b;
+				echo "<span style=\"color:yellow\">Item Level $ItemLevel </span><br>";
 			}
+			$array_stats = array(
+					1 => array("type" => $stat_type1, "value" => $stat_value1),
+					2 => array("type" => $stat_type2, "value" => $stat_value2),
+					3 => array("type" => $stat_type3, "value" => $stat_value3),
+					4 => array("type" => $stat_type4, "value" => $stat_value4),
+					5 => array("type" => $stat_type5, "value" => $stat_value5)
+			);
+			foreach($array_stats as $key => $value)
+			{
+				if($value["value"] > 0 && $value['type'] != 0)
+				{
+					echo self::MakeStat($value["type"], $value["value"]) . "<br>";
+				}
+			}
+			/*
 			if($stat_type1 != 0)
 			{
 				echo self::MakeStat($stat_type1, $stat_value1);
@@ -143,6 +155,7 @@
 				echo self::MakeStat($stat_type5, $stat_value5);
 				echo '<br>';
 			}
+			*/
 			if(strlen($description) > 0)
 			{
 				$color = '<span style="color: yellow">';
@@ -158,53 +171,22 @@
 			if($SellPrice > 0)
 			{
 				$prices = self::calculateItemPrice($SellPrice);
-				$gold = $prices["gold"] . '<img src="./img/money-gold.gif" />';
-				$silver = $prices["silver"] . '<img src="./img/money-silver.gif" />';
-				$copper = $prices["copper"] . '<img src="./img/money-copper.gif" />';
-				$color = '<span style="color:white">';
-				if($gold != 0)
-				{
-					if($silver != 0)
-					{
-						if($copper != 0)
-						{
-							echo "$color Sell Price: $gold $silver $copper </span>";		
-						}
-						else
-						{
-							echo "$color Sell Price: $gold $silver </span>";	
-						}
-					}
-					else
-					{
-						if($copper == 0)
-						{
-							echo "$color Sell Price: $gold </span>";	
-						}
-						else
-						{
-							echo "$color Sell Price: $gold $copper </span>";
-						}
-					}
+				if($prices["gold"] > 0){
+					$gold = $prices["gold"] . '<img src="./img/money-gold.gif" />';
+				} else {
+					$gold = null;
 				}
-				else
-				{
-					if($silver != 0)
-					{
-						if($copper != 0)
-						{
-							echo "$color Sell Price: $silver $copper </span>";	
-						}
-						else
-						{
-							echo "$color Sell Price: $silver </span>";
-						}
-					}
-					else
-					{
-						echo "$color Sell Price: $copper </span>";
-					}	
+				if($prices["silver"] > 0){
+					$silver = $prices["silver"] . '<img src="./img/money-silver.gif" />';
+				} else {
+					$silver = null;
 				}
+				if($prices["copper"] > 0){
+					$copper = $prices["copper"] . '<img src="./img/money-copper.gif" />';
+				} else {
+					$copper = null;
+				}
+			    echo $color . " Sell Price: " . $gold . $silver . $copper . "</span>";  
 				echo $b;
 			}
 			echo $displayid;
